@@ -28,6 +28,12 @@ target 'recieptApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
+
+
+  pod 'RNTextDetector', :path => '../node_modules/react-native-text-detector'
+
   target 'recieptAppTests' do
     inherit! :search_paths
     # Pods for testing
