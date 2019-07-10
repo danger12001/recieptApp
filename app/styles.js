@@ -11,24 +11,19 @@ import Dimensions from "./theme/Dimensions";
 export const screenHeight = Dimensions.screenHeight;
 export const screenWidth = Dimensions.screenWidth;
 const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: Colors.black,
-    flex: 1
-  },
-  camera: {
-    position: "absolute",
-    width: Dimensions.screenWidth,
-    height: Dimensions.screenHeight,
-    alignItems: "center",
+  buttonContainer: {
     justifyContent: "center",
-    top: Dimensions.screenHeight,
-    left: 0,
-    flex: 1
+    alignContent: 'center',
+    backgroundColor: 'black',
+    padding: 20,
+    width: '100%',
+    alignSelf: 'center',
   },
-  cameraContainer: {
-    height: Dimensions.screenHeight,
-    alignItems: "center",
-    justifyContent: "flex-end",
+  container: {
+    flex: 1,
+  },
+  preview: {
+    flex: 1,
   },
   imageBackground: {
     position: "absolute",
@@ -39,23 +34,17 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0
   },
-  buttonContainer: {
-    width: 70,
-    height: 70,
-    backgroundColor: Colors.white,
-    borderRadius: 35,
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 50
-  },
   button: {
     width: 64,
     height: 64,
     backgroundColor: Colors.white,
     borderRadius: 32,
     borderWidth: 4,
-    borderColor: Colors.black
+    borderColor: Colors.black,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    alignContent: 'center'
   },
   boundingRect: {
     position: "absolute",

@@ -1,7 +1,6 @@
 package com.businesscards;
 
 import com.facebook.react.ReactActivity;
-
 public class MainActivity extends ReactActivity {
 
     /**

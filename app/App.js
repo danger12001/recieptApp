@@ -51,17 +51,18 @@ export default class App extends React.Component {
   };
 
   processImage = async (uri, imageProperties) => {
-    RNTextDetector.detectFromUri(uri).then((res) => {
-      console.log(res)
-    });
+    // RNTextDetector.detectFromUri(uri).then((res) => {
+    //   console.log(res)
+    // });
+    
 
-    console.log(visionResp);
-    if (!(visionResp && visionResp.length > 0)) {
-      throw "UNMATCHED";
-    }
-    this.setState({
-      visionResp: this.mapVisionRespToScreen(visionResp, imageProperties)
-    });
+    console.log(RNTextDetector);
+    // if (!(visionResp && visionResp.length > 0)) {
+    //   throw "UNMATCHED";
+    // }
+    // this.setState({
+    //   visionResp: this.mapVisionRespToScreen(visionResp, imageProperties)
+    // });
   };
 
   mapVisionRespToScreen = (visionResp, imageProperties) => {
@@ -84,25 +85,20 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={{backgroundColor: 'black'}}>
-        
-        {!this.state.image ? (
-         <View style={style.cameraContainer}>
-         <Camera
-           ref={(ref) => { this.camera = ref }}
-           style={style.camera}
-           captureAudio={false}
-           flashMode={Camera.Constants.FlashMode.on}
-           type={Camera.Constants.Type.back} />
-         <View style={style.buttonContainer}>
-                 <TouchableOpacity
-                   onPress={() => this.takePicture(this.camera)}
-                   style={style.button}
-                 />
-           </View>
-       </View>
-        ) : null}
-        {this.state.image ? (
+    <View style={style.container}>
+
+      <Camera
+          ref={(cam) => {
+            this.camera = cam;
+          }}
+          style={style.preview}></Camera>
+      <View style={style.buttonContainer}>
+       <TouchableOpacity
+         onPress={() => this.takePicture(this.camera)}
+                style={style.button}
+                  />
+      </View>
+      {this.state.image ? (
           <ImageBackground
             source={{ uri: this.state.image }}
             style={style.imageBackground}
@@ -119,8 +115,7 @@ export default class App extends React.Component {
             })}
           </ImageBackground>
         ) : null}
-      </View>
-    
+    </View>
     );
   }
 }
