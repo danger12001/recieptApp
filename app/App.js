@@ -51,12 +51,10 @@ export default class App extends React.Component {
   };
 
   processImage = async (uri, imageProperties) => {
-    // RNTextDetector.detectFromUri(uri).then((res) => {
-    //   console.log(res)
-    // });
+    RNTextDetector.detectFromUri(uri).then((res) => {
+      console.log(res)
+    });
     
-
-    console.log(RNTextDetector);
     // if (!(visionResp && visionResp.length > 0)) {
     //   throw "UNMATCHED";
     // }
