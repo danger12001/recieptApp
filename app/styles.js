@@ -21,9 +21,14 @@ const styles = StyleSheet.create({
     height: Dimensions.screenHeight,
     alignItems: "center",
     justifyContent: "center",
-    top: 0,
+    top: Dimensions.screenHeight,
     left: 0,
     flex: 1
+  },
+  cameraContainer: {
+    height: Dimensions.screenHeight,
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
   imageBackground: {
     position: "absolute",
@@ -39,11 +44,10 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: Colors.white,
     borderRadius: 35,
-    position: "absolute",
-    bottom: 36,
     alignSelf: "center",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginBottom: 50
   },
   button: {
     width: 64,
