@@ -1,9 +1,3 @@
-/**
- * React Native Business Cards
- * https://github.com/zsajjad/BusinessCard
- *
- */
-
 import React from "react";
 import {  View, TouchableOpacity, ImageBackground, Text } from "react-native";
 import { RNCamera as Camera } from "react-native-camera";
@@ -97,6 +91,7 @@ export default class App extends React.Component {
          <Camera
            ref={(ref) => { this.camera = ref }}
            style={style.camera}
+           captureAudio={false}
            flashMode={Camera.Constants.FlashMode.on}
            type={Camera.Constants.Type.back} />
          <View style={style.buttonContainer}>
