@@ -2,7 +2,7 @@ import React from "react";
 import {  View, TouchableOpacity, ImageBackground, Text } from "react-native";
 import { RNCamera as Camera } from "react-native-camera";
 import RNTextDetector from "react-native-text-detector";
-
+import Dimensions from "./theme/Dimensions";
 import style, { screenHeight, screenWidth } from "./styles";
 
 const PICTURE_OPTIONS = {
@@ -51,18 +51,47 @@ export default class App extends React.Component {
   };
 
   processImage = async (uri, imageProperties) => {
-    // RNTextDetector.detectFromUri(uri).then((res) => {
-    //   console.log(res)
-    // });
-    
+    try {
+      const visionResp = await RNTextDetector.detectFromUri(uri);
+      console.log(visionResp)
 
-    console.log(RNTextDetector);
-    // if (!(visionResp && visionResp.length > 0)) {
-    //   throw "UNMATCHED";
-    // }
-    // this.setState({
-    //   visionResp: this.mapVisionRespToScreen(visionResp, imageProperties)
-    // });
+      //TODO - only map vision resp if fits within boundries.
+      //BOUNDRIES: TOP: 20%, LEFT: <50% - ITEMS, LEFT: >50% - TOTALS 
+      //TODO - draw boundries on camera.
+
+      let newVisionResp = [];
+      let items = [];
+      let totals = [];
+      let topBounding = ((imageProperties.height / 100) * 20);
+      let itemBounding = ((imageProperties.width / 100) * 50);
+
+      console.log(topBounding, 'top');
+      console.log(itemBounding, 'item side <');
+
+
+      visionResp.forEach((resp) => {
+        if(resp.bounding.top && resp.bounding.top > topBounding && resp.bounding.left && resp.bounding.left < itemBounding)  {
+          console.log('within top', resp);
+          newVisionResp.push(resp);
+          items.push(resp);
+        } else if (resp.bounding.top && resp.bounding.top > topBounding && resp.bounding.left && resp.bounding.left > itemBounding) {
+          totals.push(resp)
+        }  else {
+          console.log('outside array', resp)
+        }
+      })
+
+      console.log(items, 'items');
+      console.log(totals, 'totals');
+
+
+       this.setState({
+          visionResp: this.mapVisionRespToScreen(newVisionResp, imageProperties)
+      });
+    } catch(err) {
+      alert(err);
+    }
+
   };
 
   mapVisionRespToScreen = (visionResp, imageProperties) => {
@@ -70,6 +99,7 @@ export default class App extends React.Component {
     const IMAGE_TO_SCREEN_X = screenWidth / imageProperties.width;
 
     return visionResp.map(item => {
+      console.log(item);
       return {
         ...item,
         position: {
@@ -92,6 +122,12 @@ export default class App extends React.Component {
             this.camera = cam;
           }}
           style={style.preview}></Camera>
+          <View style={style.cameraBoundingContainer}> 
+              <View style={style.cameraBoundingTop}/>
+              <View style={style.cameraBoundingLeft}/>
+              <View style={style.cameraBoundingBottom}/>
+
+          </View>
       <View style={style.buttonContainer}>
        <TouchableOpacity
          onPress={() => this.takePicture(this.camera)}

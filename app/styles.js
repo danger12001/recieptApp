@@ -52,6 +52,51 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 2,
     borderColor: "#FF6600"
+  },
+  cameraBoundingLeft: {
+    backgroundColor: "transparent",
+    borderRightWidth: 2,
+    borderRightColor: "#FF6600",
+    // flex: 1,
+    width: '50%',
+    position: "absolute",
+    height: Dimensions.screenHeight,
+    top: 0,
+    left: 0,
+    alignItems: "flex-start"
+  },
+  cameraBoundingBottom: {
+    backgroundColor: "transparent",
+    borderTopWidth: 2,
+    borderTopColor: "#FF6600",
+    // flex: 1,
+    width: '100%',
+    position: "absolute",
+    height: Dimensions.screenHeight,
+    top: '60%',
+    left: 0,
+    alignItems: "flex-end"
+  },
+  cameraBoundingTop: {
+    backgroundColor: "transparent",
+    borderTopWidth: 2,
+    borderTopColor: "#FF6600",
+    // flex: 1,
+    width: '100%',
+    position: "absolute",
+    height: Dimensions.screenHeight,
+    top: '20%',
+    left: 0,
+    alignItems: "flex-end"
+  },
+  cameraBoundingContainer: {
+    position: "absolute",
+    width: Dimensions.screenWidth,
+    height: Dimensions.screenHeight,
+    top:0,
+    left: 0,
+    position: "absolute",
+    backgroundColor: "transparent",
   }
 });
 
